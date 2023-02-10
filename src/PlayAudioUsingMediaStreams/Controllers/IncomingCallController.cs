@@ -1,5 +1,3 @@
-using System.Reflection;
-
 namespace PlayAudioUsingMediaStreams.WebApi.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
