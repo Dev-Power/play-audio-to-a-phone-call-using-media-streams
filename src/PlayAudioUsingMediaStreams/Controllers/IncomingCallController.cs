@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Twilio.TwiML.Voice;
 
 namespace PlayAudioUsingMediaStreams.WebApi.Controllers;
@@ -16,9 +17,8 @@ public class IncomingCallController : TwilioController
         var response = new VoiceResponse();
         response.Say("Say animal names to hear their sounds.");
         
-        var ngrokUrl = Environment.GetEnvironmentVariable("NGROK_URL_WITHOUT_PROTOCOL");
         var connect = new Connect();
-        connect.Stream(name: "Animal Soundboard", url: $"wss://{ngrokUrl}/animalsoundboard");
+        connect.Stream(name: "Animal Soundboard", url: $"wss://{Request.Host}/animalsoundboard");
         response.Append(connect);
         
         Console.WriteLine(response.ToString());
