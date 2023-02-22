@@ -22,8 +22,10 @@ public class SoundService
             var rawAudioData = File.ReadAllBytes(audioFilePath);
             
             // Skip the header bytes while copying
-            sound.AudioData = new byte[rawAudioData.Length - WavHeaderBytesToSkip];
-            Array.Copy(rawAudioData, WavHeaderBytesToSkip, sound.AudioData, 0, sound.AudioData.Length);
+            var tempAudioData = new byte[rawAudioData.Length - WavHeaderBytesToSkip];
+            Array.Copy(rawAudioData, WavHeaderBytesToSkip, tempAudioData, 0, tempAudioData.Length);
+
+            sound.AudioDataAsBase64 = Convert.ToBase64String(tempAudioData);
         }
     }
 

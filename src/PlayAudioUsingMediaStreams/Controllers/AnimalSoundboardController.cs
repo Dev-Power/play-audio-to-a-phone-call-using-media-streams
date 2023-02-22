@@ -81,7 +81,7 @@ public class AnimalSoundboardController : TwilioController
                                         @event = "media", 
                                         media = new
                                         {
-                                            payload = Convert.ToBase64String(soundToPlay.AudioData)
+                                            payload = soundToPlay.AudioDataAsBase64
                                         }
                                     };
                                     
