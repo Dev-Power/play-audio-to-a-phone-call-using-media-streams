@@ -1,9 +1,9 @@
-namespace PlayAudioUsingMediaStreams.WebApi.Controllers;
-
 using Microsoft.AspNetCore.Mvc;
 using Twilio.AspNet.Core;
 using Twilio.TwiML;
 using Twilio.TwiML.Voice;
+
+namespace PlayAudioUsingMediaStreams.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
