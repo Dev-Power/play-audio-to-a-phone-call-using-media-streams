@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using Twilio.TwiML.Voice;
 
 namespace PlayAudioUsingMediaStreams.WebApi.Controllers;
