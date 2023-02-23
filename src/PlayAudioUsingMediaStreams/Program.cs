@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using PlayAudioUsingMediaStreams.WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSpeechClient();
 builder.Services.AddTransient<SoundService>();
 builder.Services.AddTransient<SpeechRecognitionService>();
+
+// For load balancers, reverse proxies, and tunnels like ngrok and VS dev tunnels
+// Follow guidance to secure here: https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer
+builder.Services.Configure<ForwardedHeadersOptions>(options => options.ForwardedHeaders = ForwardedHeaders.All);
 
 builder.Services.AddControllers();
 
@@ -28,8 +33,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseForwardedHeaders();
+
 app.MapControllers();
-app.UseWebSockets();
 
 app.UseWebSockets();
 
