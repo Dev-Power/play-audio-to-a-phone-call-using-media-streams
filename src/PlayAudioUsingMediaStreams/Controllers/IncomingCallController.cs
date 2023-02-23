@@ -14,11 +14,19 @@ public class IncomingCallController : TwilioController
     {
         var response = new VoiceResponse();
         response.Say("Say animal names to hear their sounds.");
-        
+
         var connect = new Connect();
-        connect.Stream(name: "Animal Soundboard", url: $"wss://{Request.Host}/animalsoundboard");
+        connect.Stream(
+            name: "Animal Soundboard", 
+            url: Url.Action(
+                action: "Get", 
+                controller: "AnimalSoundboard",
+                values: null,
+                protocol: "wss"
+            )
+        );
         response.Append(connect);
-        
+
         Console.WriteLine(response.ToString());
         return TwiML(response);
     }

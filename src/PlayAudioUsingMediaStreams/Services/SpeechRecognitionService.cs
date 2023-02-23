@@ -18,13 +18,19 @@ public class SpeechRecognitionService
         },
         InterimResults = true
     };
-    
-    private SpeechClient speechClient = SpeechClient.Create();
+
+    private SpeechClient _speechClient;
+
     private SpeechClient.StreamingRecognizeStream _streamingRecognizeStream;
+
+    public SpeechRecognitionService(SpeechClient speechClient)
+    {
+        _speechClient = speechClient;
+    }
     
     public async Task<AsyncResponseStream<StreamingRecognizeResponse>> InitStream()
     {
-        _streamingRecognizeStream = speechClient.StreamingRecognize();
+        _streamingRecognizeStream = _speechClient.StreamingRecognize();
         await _streamingRecognizeStream.WriteAsync(new StreamingRecognizeRequest
         {
             StreamingConfig = _streamingConfig,

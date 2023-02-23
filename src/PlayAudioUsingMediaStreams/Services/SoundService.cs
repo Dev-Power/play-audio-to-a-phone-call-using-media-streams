@@ -29,8 +29,9 @@ public class SoundService
         }
     }
 
-    public Sound FindSoundByKeyword(string keyword)
+    public bool TryFindSoundByKeyword(string keyword, out Sound sound)
     {
-        return _sounds.FirstOrDefault(s => s.Keywords.Contains(keyword));
+        sound = _sounds.FirstOrDefault(s => s.Keywords.Contains(keyword));
+        return sound != null;
     }
 }
