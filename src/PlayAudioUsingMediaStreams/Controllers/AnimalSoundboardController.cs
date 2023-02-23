@@ -6,7 +6,7 @@ namespace PlayAudioUsingMediaStreams.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AnimalSoundboardController : TwilioController
+public class AnimalSoundboardController : Controller
 {
     [HttpPost]
     public TwiMLResult Index()
